@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/custom_text.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 

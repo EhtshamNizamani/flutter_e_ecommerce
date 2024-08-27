@@ -1,5 +1,5 @@
-import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {

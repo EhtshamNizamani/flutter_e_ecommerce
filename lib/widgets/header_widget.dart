@@ -1,172 +1,193 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/custom_text.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
+import 'package:flutter_e_commerce/config/rotues.dart';
+import 'package:flutter_e_commerce/feature/home/controller/home_provider.dart';
 import 'package:flutter_e_commerce/util/responsive.dart';
-import 'package:flutter_e_commerce/widgets/custom_textfield.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'custom_textfield.dart';
 
 class HeaderWidget extends StatefulWidget {
-  const HeaderWidget({super.key});
-
+  const HeaderWidget(
+      {super.key,
+      this.fontColor = AppColors.white,
+      this.mainColor = AppColors.white,
+      this.bgColor});
+  final Color fontColor;
+  final Color mainColor;
+  final Color? bgColor;
   @override
   State<HeaderWidget> createState() => _HeaderWidgetState();
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
-  Color contactColor = AppColors.white;
-  Color homeColor = AppColors.white;
-  Color aboutColor = AppColors.white;
-
-  void _incrementExit(name) {
-    setState(() {
-      contactColor = AppColors.white;
-      aboutColor = AppColors.white;
-      homeColor = AppColors.white;
-    });
-  }
-
-  void _updateLocation(name) {
-    switch (name) {
-      case 'About':
-        aboutColor = AppColors.primary;
-      case 'Contact':
-        contactColor = AppColors.primary;
-      case 'Home':
-        homeColor = AppColors.primary;
-        break;
-      default:
-    }
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeProvider>().setColors(widget.fontColor);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(18.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SvgPicture.asset(
-            'assets/images/logo.svg',
-          ),
-          !Responsive.isDesktop(context)
-              ? SizedBox.shrink()
-              : Expanded(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 300,
-                      ),
-                      Row(
-                        children: [
-                          MouseRegion(
-                            onHover: (_) => _updateLocation('Home'),
-                            onExit: (_) => _incrementExit('Home'),
-                            child: InkWell(
-                              hoverColor: AppColors.backgroundColor,
-                              onTap: () {},
-                              child: CustomText(
-                                text: "Home",
-                                textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Responsive.isDesktop(context)
-                                        ? homeColor
-                                        : null),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 26),
-                          MouseRegion(
-                            onHover: (_) => _updateLocation('About'),
-                            onExit: (_) => _incrementExit('About'),
-                            child: InkWell(
-                              hoverColor: AppColors.backgroundColor,
-                              onTap: () {},
-                              child: CustomText(
-                                text: "About us",
-                                textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Responsive.isDesktop(context)
-                                        ? aboutColor
-                                        : null),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 26),
-                          MouseRegion(
-                            onHover: (_) => _updateLocation('Contact'),
-                            onExit: (_) => _incrementExit('Contact'),
-                            child: InkWell(
-                              hoverColor: AppColors.backgroundColor,
-                              onTap: () {},
-                              child: CustomText(
-                                text: "Contact us",
-                                textStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Responsive.isDesktop(context)
-                                        ? contactColor
-                                        : null),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 35),
-                      Expanded(
-                        child: Row(
+    return Consumer<HomeProvider>(builder: (context, provider, child) {
+      return Container(
+        padding: const EdgeInsets.all(18.0),
+        color: widget.bgColor == null ? Colors.transparent : widget.bgColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset(
+              widget.bgColor == null
+                  ? 'assets/images/logo.svg'
+                  : 'assets/images/b-logo.svg',
+            ),
+            !Responsive.isDesktop(context)
+                ? const SizedBox.shrink()
+                : Expanded(
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 300,
+                        ),
+                        Row(
                           children: [
-                            Flexible(
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(
-                                    maxWidth: 300, // Max width is 300 pixels
-                                    minWidth: 100,
-                                    maxHeight: 50),
-                                child: CustomTextField(
-                                    fillColor: Colors.transparent,
-                                    borderColor: AppColors.white,
-                                    controller: TextEditingController(),
-                                    hintText: 'Search',
-                                    styleColor: AppColors.white,
-                                    suffixIcon: 'assets/images/search.svg'),
+                            MouseRegion(
+                              onHover: (_) => provider.updateLocation('Home'),
+                              onExit: (_) => provider.incrementExit('Home'),
+                              child: InkWell(
+                                hoverColor: Colors.transparent,
+                                onTap: () {
+                                  provider.changeTab(0);
+                                },
+                                child: CustomText(
+                                  text: "HOME",
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Responsive.isDesktop(context)
+                                          ? provider.homeColor
+                                          : null),
+                                ),
                               ),
                             ),
-                            SizedBox(width: 30),
-                            CustomText(
-                              text: "\$0.00",
-                              textStyle: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w500),
+                            const SizedBox(width: 26),
+                            MouseRegion(
+                              onHover: (_) =>
+                                  provider.updateLocation('SHOP ALL'),
+                              onExit: (_) => provider.incrementExit('SHOP ALL'),
+                              child: InkWell(
+                                hoverColor: Colors.transparent,
+                                onTap: () {
+                                  provider.changeTab(1);
+                                },
+                                child: CustomText(
+                                  text: "SHOP ALL",
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Responsive.isDesktop(context)
+                                          ? provider.shopAllColor
+                                          : null),
+                                ),
+                              ),
                             ),
-                            SizedBox(width: 8),
-                            Icon(Icons.shopping_cart_outlined,
-                                color: AppColors.white)
+                            const SizedBox(width: 26),
+                            MouseRegion(
+                              onHover: (_) =>
+                                  provider.updateLocation('Contact'),
+                              onExit: (_) => provider.incrementExit('Contact'),
+                              child: InkWell(
+                                hoverColor: Colors.transparent,
+                                onTap: () {
+                                  provider.changeTab(2);
+                                },
+                                child: CustomText(
+                                  text: "CONTACT US",
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Responsive.isDesktop(context)
+                                          ? provider.contactColor
+                                          : null),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      SizedBox(width: 200),
-                    ],
+                        const SizedBox(width: 35),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                      maxWidth: 300, // Max width is 300 pixels
+                                      minWidth: 100,
+                                      maxHeight: 50),
+                                  child: CustomTextField(
+                                      fillColor: Colors.transparent,
+                                      borderColor: widget.mainColor,
+                                      controller: TextEditingController(),
+                                      hintText: 'Search',
+                                      styleColor: widget.mainColor,
+                                      suffixIcon: 'assets/images/search.svg'),
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              CustomText(
+                                text: "\$0.00",
+                                textStyle: GoogleFonts.montserrat(
+                                    fontSize: 16,
+                                    color: widget.mainColor,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(width: 8),
+                              MouseRegion(
+                                onHover: (_) => provider.updateLocation('Cart'),
+                                onExit: (_) => provider.incrementExit('Cart'),
+                                child: Icon(Icons.shopping_cart_outlined,
+                                    color: provider.cartColor),
+                              ),
+                              const SizedBox(width: 8),
+                              MouseRegion(
+                                  onHover: (_) =>
+                                      provider.updateLocation('Person'),
+                                  onExit: (_) =>
+                                      provider.incrementExit('Person'),
+                                  child: InkWell(
+                                    onTap: () {
+                                      context.go("/$register");
+                                    },
+                                    child: Icon(Icons.person,
+                                        color: provider.personColor),
+                                  ))
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 200),
+                      ],
+                    ),
                   ),
-                ),
-          if (!Responsive.isDesktop(context))
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: InkWell(
-                onTap: () => Scaffold.of(context).openEndDrawer(),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Icon(
-                    Icons.menu,
-                    color: AppColors.primary,
-                    size: 25,
+            if (!Responsive.isDesktop(context))
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: InkWell(
+                  onTap: () => Scaffold.of(context).openEndDrawer(),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.menu,
+                      color: AppColors.primary,
+                      size: 25,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }
 

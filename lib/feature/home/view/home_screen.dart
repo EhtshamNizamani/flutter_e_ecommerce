@@ -1,11 +1,11 @@
-import 'package:flutter_e_commerce/config/color/app_colors.dart';
-import 'package:flutter_e_commerce/util/responsive.dart';
-import 'package:flutter_e_commerce/widgets/dashboard_widget.dart';
-import 'package:flutter_e_commerce/widgets/side_menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/config/color/app_colors.dart';
+import 'package:flutter_e_commerce/feature/home/widget/dashboard_widget.dart';
+import 'package:flutter_e_commerce/util/responsive.dart';
+import 'package:flutter_e_commerce/widgets/side_menu_widget.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class MainScreen extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 7,
               child: DashboardWidget(),
             ),
           ],

@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_e_commerce/data/side_menu_data.dart';
 import 'package:flutter_e_commerce/helper/navigation_helper.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SideMenuWidget extends StatefulWidget {
@@ -44,7 +44,7 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
           selectedIndex = index;
           final routeName =
               NavigationHelper.getRouteName(data.menu[index].title);
-
+          print(routeName);
           context.go(routeName);
         }),
         child: Row(
