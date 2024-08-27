@@ -9,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !kIsWeb,
-        title: Text("Profile"),
+        title: const Text("Profile"),
       ),
     );
   }

@@ -52,8 +52,8 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon != null
             ? Container(
-                margin: EdgeInsets.only(right: 6),
-                padding: EdgeInsets.all(8),
+                margin: const EdgeInsets.only(right: 6),
+                padding: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8),
@@ -70,7 +70,7 @@ class CustomTextField extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: AppColors.grey,
         ),
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: 16.0,
           vertical: 12.0,
         ),

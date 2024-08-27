@@ -12,7 +12,7 @@ class ProductViewSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 4,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -23,10 +23,10 @@ class ProductViewSection extends StatelessWidget {
                 0.75, // Adjust this to control the height of the items
           ),
           itemBuilder: (context, index) {
-            return ProductCard(
+            return const ProductCard(
                 hasDiscount: true,
                 imageUrl: 'assets/images/shoe.png',
-                title: 'Consequat running shoes',
+                title: 'Cons running shoes',
                 originalPrice: 311,
                 discountedPrice: 300);
           }),

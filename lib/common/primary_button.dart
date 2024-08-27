@@ -35,6 +35,7 @@ class PrimaryButton extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _PrimaryButtonState createState() => _PrimaryButtonState();
 }
 
@@ -51,7 +52,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       child: InkWell(
         onTap: widget.onTap,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           width: widget.width ?? double.infinity,
           height: widget.height ?? 38,
           alignment: Alignment.center,
@@ -72,7 +73,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 8,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ]
                 : [],
@@ -98,7 +99,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                             height: 25,
                           )
                         : const SizedBox.shrink(),
-                    SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     CustomText(
                       text: widget.text,
                       textStyle: GoogleFonts.montserrat(

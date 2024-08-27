@@ -13,8 +13,6 @@ class HomeProvider extends ChangeNotifier {
   late Color personColor;
   late Color cartColor;
   void incrementExit(name) {
-    print(name);
-
     contactColor = _selectedColor;
     shopAllColor = _selectedColor;
     homeColor = _selectedColor;
@@ -46,7 +44,6 @@ class HomeProvider extends ChangeNotifier {
     _selectedTab = index;
     switch (index) {
       case 0:
-        print(index);
         homeColor = AppColors.primary;
       case 1:
         shopAllColor = AppColors.primary;
@@ -55,7 +52,6 @@ class HomeProvider extends ChangeNotifier {
         break;
       default:
     }
-    print(index);
     notifyListeners();
   }
 

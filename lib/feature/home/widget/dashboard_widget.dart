@@ -21,21 +21,21 @@ class DashboardWidget extends StatelessWidget {
         return Column(
           children: [
             selectedTab == 0
-                ? HeaderWithImage()
-                : HeaderWidget(
+                ? const HeaderWithImage()
+                : const HeaderWidget(
                     fontColor: AppColors.grey,
                     mainColor: AppColors.primary,
                     bgColor: AppColors.white,
                   ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             if (selectedTab == 0)
-              ProductViewSection() // Default Tab
+              const ProductViewSection() // Default Tab
             else if (selectedTab == 1)
-              MenProduct()
+              const MenProduct()
             else if (selectedTab == 2)
-              CustomText(text: "This is women category"),
-            SizedBox(height: 35),
-            SubscribeWidget(),
+              const CustomText(text: "This is women category"),
+            const SizedBox(height: 35),
+            const SubscribeWidget(),
             FooterWidget(),
           ],
         );
@@ -52,7 +52,7 @@ class MenProduct extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 4,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -63,10 +63,10 @@ class MenProduct extends StatelessWidget {
                 0.75, // Adjust this to control the height of the items
           ),
           itemBuilder: (context, index) {
-            return ProductCard(
+            return const ProductCard(
                 hasDiscount: true,
                 imageUrl: 'assets/images/helmet.jpg',
-                title: 'Purus elit helmet',
+                title: 'Purus elite helmet',
                 originalPrice: 231,
                 discountedPrice: 222);
           }),
