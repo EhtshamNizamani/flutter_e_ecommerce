@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce/common/custom_text.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_e_commerce/feature/home/controller/home_provider.dart';
 import 'package:flutter_e_commerce/feature/home/widget/all_product_widget.dart';
 import 'package:flutter_e_commerce/feature/home/widget/product_card.dart';
 import 'package:flutter_e_commerce/feature/home/widget/subscribe_widget.dart';
+import 'package:flutter_e_commerce/feature/home/widget/women_product.dart';
 import 'package:flutter_e_commerce/widgets/footer_widget.dart';
 import 'package:flutter_e_commerce/widgets/header_widget.dart';
 import 'package:flutter_e_commerce/widgets/header_with_image.dart';
@@ -33,10 +33,10 @@ class DashboardWidget extends StatelessWidget {
             else if (selectedTab == 1)
               const MenProduct()
             else if (selectedTab == 2)
-              const CustomText(text: "This is women category"),
+              const WomenProductViewSection(),
             const SizedBox(height: 35),
             const SubscribeWidget(),
-            FooterWidget(),
+            const FooterWidget(),
           ],
         );
       }),

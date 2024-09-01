@@ -28,7 +28,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeProvider>().setColors(widget.fontColor);
+    context
+        .read<HomeProvider>()
+        .setColors(isInit: true, color: widget.fontColor);
   }
 
   @override
@@ -36,7 +38,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return Consumer<HomeProvider>(builder: (context, provider, child) {
       return Container(
         padding: const EdgeInsets.all(18.0),
-        color: widget.bgColor == null ? Colors.transparent : widget.bgColor,
+        color: widget.bgColor ?? Colors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -95,13 +97,32 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                             ),
                             const SizedBox(width: 26),
                             MouseRegion(
+                              onHover: (_) => provider.updateLocation('Women'),
+                              onExit: (_) => provider.incrementExit('Women'),
+                              child: InkWell(
+                                hoverColor: Colors.transparent,
+                                onTap: () {
+                                  provider.changeTab(2);
+                                },
+                                child: CustomText(
+                                  text: "WOMEN",
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Responsive.isDesktop(context)
+                                          ? provider.womenColor
+                                          : null),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 26),
+                            MouseRegion(
                               onHover: (_) =>
                                   provider.updateLocation('Contact'),
                               onExit: (_) => provider.incrementExit('Contact'),
                               child: InkWell(
                                 hoverColor: Colors.transparent,
                                 onTap: () {
-                                  provider.changeTab(2);
+                                  provider.changeTab(3);
                                 },
                                 child: CustomText(
                                   text: "CONTACT US",
@@ -190,51 +211,3 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     });
   }
 }
-
-// class CustomTextfield extends StatelessWidget {
-//   const CustomTextfield({
-//     this.isIcon = false,
-//     required this.hint,
-//     super.key,
-//   });
-
-//   final String hint;
-//   final bool isIcon;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextField(
-//       style: GoogleFonts.poppins(color: AppAppColors.grey),
-//       decoration: InputDecoration(
-//         hintText: hint,
-//         hintStyle: GoogleFonts.poppins(color: AppColors.grey),
-//         suffixIcon: isIcon
-//             ? Padding(
-//                 padding: const EdgeInsets.all(10.0),
-//                 child: SvgPicture.asset(
-//                   'assets/images/search.svg',
-//                   color: AppColors.primary,
-//                 ),
-//               )
-//             : null,
-//         focusedBorder: OutlineInputBorder(
-//           borderSide: BorderSide(
-//             color: AppColors.primary,
-//           ),
-//         ),
-//         enabledBorder: OutlineInputBorder(
-//           borderSide: BorderSide(
-//             color: AppColors.primary,
-//           ),
-//         ),
-//         border: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8.0),
-//         ),
-//       ),
-//       onChanged: (value) {
-//         // Handle changes here
-//         print('Text changed: $value');
-//       },
-//     );
-//   }
-// }
