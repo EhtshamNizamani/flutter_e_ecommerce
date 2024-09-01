@@ -44,7 +44,6 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
           selectedIndex = index;
           final routeName =
               NavigationHelper.getRouteName(data.menu[index].title);
-          print(routeName);
           context.go(routeName);
         }),
         child: Row(

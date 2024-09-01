@@ -6,6 +6,8 @@ import 'package:flutter_e_commerce/util/responsive.dart';
 import 'package:flutter_e_commerce/widgets/custom_textfield.dart';
 
 class SubscribeWidget extends StatelessWidget {
+  const SubscribeWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +27,7 @@ class SubscribeWidget extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
 
             // Subtitle Text
             CustomText(
@@ -37,7 +39,7 @@ class SubscribeWidget extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
 
             // Email Input and Subscribe Button
             Responsive.isMobile(context)
@@ -54,7 +56,7 @@ class SubscribeWidget extends StatelessWidget {
                           controller: TextEditingController(),
                         ),
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
 
                       // Subscribe Button
                       PrimaryButton(
@@ -80,7 +82,7 @@ class SubscribeWidget extends StatelessWidget {
                           controller: TextEditingController(),
                         ),
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
 
                       // Subscribe Button
                       PrimaryButton(

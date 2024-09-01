@@ -4,27 +4,29 @@ import 'package:flutter_e_commerce/util/responsive.dart';
 import 'package:flutter_svg/svg.dart';
 
 class FooterWidget extends StatelessWidget {
+  const FooterWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     final isDesktop = Responsive.isDesktop(context);
     final isMobile = MediaQuery.of(context).size.width < 600;
     return Container(
       color: AppColors.black,
-      padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 18),
+      padding: const EdgeInsets.symmetric(vertical: 60.0, horizontal: 18),
       child: Column(
         crossAxisAlignment:
             isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           // Top section with logo and about text
-          isDesktop ? FooterAboutDesktop() : FooterAboutUs(),
-          SizedBox(height: 40.0),
+          isDesktop ? const FooterAboutDesktop() : const FooterAboutUs(),
+          const SizedBox(height: 40.0),
 
           // Bottom section with columns for navigation
-          isMobile ? ForMobile() : ForDesktop(),
-          SizedBox(height: 40.0),
+          isMobile ? const ForMobile() : const ForDesktop(),
+          const SizedBox(height: 40.0),
 
           // Footer Copyright Text
-          Center(
+          const Center(
             child: Text(
               'Copyright © 2024 Sports Wear Store',
               style: TextStyle(color: Colors.grey),
@@ -43,7 +45,7 @@ class ForDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,9 +129,9 @@ class FooterAboutDesktop extends StatelessWidget {
             children: [
               // Logo
               SvgPicture.asset('assets/images/logo.svg'),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               // Social Media Icons (can be replaced with actual icons)
-              Row(
+              const Row(
                 children: [
                   Icon(Icons.facebook, color: AppColors.white, size: 24.0),
                   SizedBox(width: 10.0),
@@ -141,9 +143,9 @@ class FooterAboutDesktop extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(width: 46),
+          const SizedBox(width: 46),
           // About Us
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -186,9 +188,9 @@ class FooterAboutUs extends StatelessWidget {
           children: [
             // Logo
             SvgPicture.asset('assets/images/logo.svg'),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             // Social Media Icons (can be replaced with actual icons)
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.facebook, color: AppColors.white, size: 24.0),
@@ -201,9 +203,9 @@ class FooterAboutUs extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         // About Us
-        Column(
+        const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
@@ -236,7 +238,7 @@ class ForMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Shop Column

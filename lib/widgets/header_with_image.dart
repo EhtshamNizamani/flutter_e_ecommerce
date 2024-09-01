@@ -32,12 +32,11 @@ class HeaderWithImage extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(6)),
           ),
         ),
-        // Overlayed content (text, buttons) limited to the left side
         Positioned(
           top: 140, // Adjust this to control vertical positioning
           left: 20,
           bottom: 0, // Keep content aligned to the left side
-          child: Container(
+          child: SizedBox(
             width: isTrue
                 ? MediaQuery.of(context).size.width * 1
                 : MediaQuery.of(context).size.width / 2,
@@ -52,15 +51,15 @@ class HeaderWithImage extends StatelessWidget {
                     color: AppColors.white,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Nam natoque in massa bibendum lacus, et arcu cursus nisl rutrum at tincidunt in sit in massa adipiscing lorem fusce.",
                   style: TextStyle(
                     fontSize: 18,
                     color: AppColors.white,
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 PrimaryButton(
                   width: 156,
                   height: 46,
@@ -75,7 +74,7 @@ class HeaderWithImage extends StatelessWidget {
             ),
           ),
         ),
-        HeaderWidget(),
+        const HeaderWidget(),
       ],
     );
   }

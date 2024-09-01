@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'product_card.dart';
 
-class ProductViewSection extends StatelessWidget {
-  const ProductViewSection({
+class WomenProductViewSection extends StatelessWidget {
+  const WomenProductViewSection({
     super.key,
   });
 
@@ -25,10 +25,10 @@ class ProductViewSection extends StatelessWidget {
           itemBuilder: (context, index) {
             return const ProductCard(
                 hasDiscount: true,
-                imageUrl: 'assets/images/shoe.png',
-                title: 'Cons running shoes',
-                originalPrice: 311,
-                discountedPrice: 300);
+                imageUrl: 'assets/images/shoe_m.png',
+                title: 'Sed dolor training shoes',
+                originalPrice: 48,
+                discountedPrice: 29);
           }),
     );
   }

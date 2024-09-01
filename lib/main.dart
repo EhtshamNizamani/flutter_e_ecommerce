@@ -14,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final GoRouter router;
 
-  const MyApp({Key? key, required this.router}) : super(key: key);
+  const MyApp({super.key, required this.router});
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

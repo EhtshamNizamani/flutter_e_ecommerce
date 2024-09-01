@@ -4,6 +4,7 @@ import 'package:flutter_e_commerce/config/color/app_colors.dart';
 class HomeProvider extends ChangeNotifier {
   Color _selectedColor = AppColors.white;
   int _selectedTab = 0;
+  String _hoveredTab = ''; // Added to track hovered tab
 
   int get selectedTab => _selectedTab;
 
@@ -12,59 +13,56 @@ class HomeProvider extends ChangeNotifier {
   late Color shopAllColor;
   late Color personColor;
   late Color cartColor;
+  late Color womenColor;
+
+  // Method to handle exiting hover state
   void incrementExit(name) {
-    print(name);
-
-    contactColor = _selectedColor;
-    shopAllColor = _selectedColor;
-    homeColor = _selectedColor;
-    personColor = _selectedColor;
-    cartColor = _selectedColor;
-    notifyListeners();
+    _hoveredTab = ''; // Clear hovered tab
+    _updateColors(); // Update colors based on selected tab
   }
 
+  // Method to handle hover state
   void updateLocation(name) {
-    switch (name) {
-      case 'SHOP ALL':
-        shopAllColor = AppColors.primary;
-      case 'Contact':
-        contactColor = AppColors.primary;
-      case 'Home':
-        homeColor = AppColors.primary;
-      case 'Person':
-        personColor = AppColors.primary;
-      case 'Cart':
-        cartColor = AppColors.primary;
-
-        break;
-      default:
-    }
-    notifyListeners();
+    _hoveredTab = name; // Set hovered tab
+    _updateColors(); // Update colors based on hovered tab
   }
 
+  // Update the colors of the tabs based on the current selected and hovered state
+  void _updateColors({bool? isInit}) {
+    contactColor = (_selectedTab == 3 || _hoveredTab == 'Contact')
+        ? AppColors.primary
+        : _selectedColor;
+    shopAllColor = (_selectedTab == 1 || _hoveredTab == 'SHOP ALL')
+        ? AppColors.primary
+        : _selectedColor;
+    homeColor = (_selectedTab == 0 || _hoveredTab == 'Home')
+        ? AppColors.primary
+        : _selectedColor;
+    personColor = (_selectedTab == 4 || _hoveredTab == 'Person')
+        ? AppColors.primary
+        : _selectedColor;
+    cartColor = (_selectedTab == 5 || _hoveredTab == 'Cart')
+        ? AppColors.primary
+        : _selectedColor;
+    womenColor = (_selectedTab == 2 || _hoveredTab == 'Women')
+        ? AppColors.primary
+        : _selectedColor;
+
+    if (isInit == null) {
+      notifyListeners();
+    }
+  }
+
+  // Method to handle tab selection
   void changeTab(int index) {
-    _selectedTab = index;
-    switch (index) {
-      case 0:
-        print(index);
-        homeColor = AppColors.primary;
-      case 1:
-        shopAllColor = AppColors.primary;
-      case 2:
-        contactColor = AppColors.primary;
-        break;
-      default:
-    }
-    print(index);
-    notifyListeners();
+    _selectedTab = index; // Set selected tab
+    _hoveredTab = ''; // Clear hovered tab when a tab is clicked
+    _updateColors(); // Update colors based on selected tab
   }
 
-  void setColors(color) {
+  // Set the initial colors when widget is built
+  void setColors({bool? isInit, color}) {
     _selectedColor = color;
-    contactColor = _selectedColor;
-    homeColor = _selectedColor;
-    shopAllColor = _selectedColor;
-    personColor = _selectedColor;
-    cartColor = _selectedColor;
+    _updateColors(isInit: isInit);
   }
 }

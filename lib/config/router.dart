@@ -11,30 +11,57 @@ GoRouter gotRouter() {
     routes: <RouteBase>[
       GoRoute(
         path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
-        },
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            _fadeTransitionPageBuilder(
+          context,
+          state.pageKey,
+          const HomeScreen(),
+        ),
         routes: <RouteBase>[
           GoRoute(
             path: profile,
-            builder: (BuildContext context, GoRouterState state) {
-              return const ProfileScreen();
-            },
+            pageBuilder: (BuildContext context, GoRouterState state) =>
+                _fadeTransitionPageBuilder(
+              context,
+              state.pageKey,
+              const ProfileScreen(),
+            ),
           ),
           GoRoute(
             path: register,
-            builder: (BuildContext context, GoRouterState state) {
-              return const RegistrationPage();
-            },
+            pageBuilder: (BuildContext context, GoRouterState state) =>
+                _fadeTransitionPageBuilder(
+              context,
+              state.pageKey,
+              const RegistrationPage(),
+            ),
           ),
           GoRoute(
             path: login,
-            builder: (BuildContext context, GoRouterState state) {
-              return const LoginPage();
-            },
+            pageBuilder: (BuildContext context, GoRouterState state) =>
+                _fadeTransitionPageBuilder(
+              context,
+              state.pageKey,
+              LoginPage(),
+            ),
           ),
         ],
       ),
     ],
+  );
+}
+
+Page _fadeTransitionPageBuilder(
+    BuildContext context, LocalKey key, Widget child) {
+  return CustomTransitionPage<void>(
+    key: key,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: child,
+      );
+    },
+    transitionDuration: const Duration(milliseconds: 100), // Fast transition
   );
 }
