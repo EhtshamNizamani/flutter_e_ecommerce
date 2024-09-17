@@ -5,7 +5,12 @@ class AppColors {
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color red = Color.fromARGB(255, 251, 4, 4);
   static const backgroundColor = Color(0xFFf7f7f7);
+
   static const grey = Color(0XFF576171);
+  static const green = Color(0XFF446c5d);
+  static const webRed = "#FF5722";
+  static const webGreen = "#446c5d";
+
   static const black = Color(0XFF131315);
   static const imgBG = Color(0XFFECEDEF);
 }

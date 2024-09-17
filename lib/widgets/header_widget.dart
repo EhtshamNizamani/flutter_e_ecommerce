@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'custom_textfield.dart';
+import '../feature/shared_widget/custom_textfield.dart';
 
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget(
@@ -150,7 +150,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                                       fillColor: Colors.transparent,
                                       borderColor: widget.mainColor,
                                       controller: TextEditingController(),
-                                      hintText: 'Search',
+                                      labelText: 'Search',
                                       styleColor: widget.mainColor,
                                       suffixIcon: 'assets/images/search.svg'),
                                 ),

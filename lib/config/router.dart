@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/config/rotues.dart';
-import 'package:flutter_e_commerce/feature/auth/login_page.dart';
-import 'package:flutter_e_commerce/feature/auth/register_page.dart';
+import 'package:flutter_e_commerce/feature/auth/view/login_page.dart';
+import 'package:flutter_e_commerce/feature/auth/view/register_page.dart';
 import 'package:flutter_e_commerce/feature/home/view/home_screen.dart';
 import 'package:flutter_e_commerce/feature/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';

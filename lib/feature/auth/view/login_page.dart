@@ -1,12 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_e_commerce/common/primary_button.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_e_commerce/config/rotues.dart';
+import 'package:flutter_e_commerce/feature/shared_widget/custom_password_textfield.dart';
+import 'package:flutter_e_commerce/feature/shared_widget/custom_tex.dart';
+import 'package:flutter_e_commerce/feature/shared_widget/custom_textfield.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,50 +45,56 @@ class RegistrationPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        const CustomTextWidget(
+                          text: 'Sign In',
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
                         ),
                         const SizedBox(height: 16),
-                        const TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Username',
-                            prefixIcon: Icon(Icons.person),
-                            border: OutlineInputBorder(),
-                          ),
+                        CustomTextField(
+                          labelText: "Email",
+                          controller: TextEditingController(),
+                          prefixIcon: const Icon(Icons.person),
                         ),
                         const SizedBox(height: 16),
-                        const TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            prefixIcon: Icon(Icons.email),
-                            border: OutlineInputBorder(),
-                          ),
+                        CustomPasswordField(
+                          labelText: "Password",
+                          onTap: () {},
+                          isOpen: false,
+                          controller: TextEditingController(),
+                          prefixIcon: const Icon(Icons.lock),
                         ),
                         const SizedBox(height: 16),
-                        const TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            prefixIcon: Icon(Icons.lock),
-                            border: OutlineInputBorder(),
-                          ),
-                          obscureText: true,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(value: false, onChanged: (_) {}),
+                                const CustomTextWidget(text: 'Remember Me'),
+                              ],
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                // Navigate to Forgot Password page
+                              },
+                              child: const CustomTextWidget(
+                                  text: 'Forgot Password'),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 24),
                         PrimaryButton(
                           onTap: () {
-                            // Handle sign-up logic
+                            // Handle login logic
                           },
-                          text: 'Sign Up',
+                          text: 'Sign In',
                         ),
                       ],
                     ),
                   ),
                 ),
-                // Illustration and Sign In section
+                // Illustration and signup section
                 Expanded(
                   flex: 1,
                   child: Container(
@@ -103,7 +114,7 @@ class RegistrationPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Welcome to registration',
+                            'Welcome to login',
                             style: TextStyle(
                               fontSize: 24,
                               color: Colors.white,
@@ -111,7 +122,7 @@ class RegistrationPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           const Text(
-                            "Already have an account?",
+                            "Don't have an account?",
                             style: TextStyle(
                               color: Colors.white70,
                             ),
@@ -119,12 +130,12 @@ class RegistrationPage extends StatelessWidget {
                           const SizedBox(height: 8),
                           OutlinedButton(
                             onPressed: () {
-                              context.go("/$login");
+                              context.go("/$register");
                             },
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Colors.white),
                             ),
-                            child: const Text('Sign In'),
+                            child: const Text('Sign Up'),
                           ),
                         ],
                       ),

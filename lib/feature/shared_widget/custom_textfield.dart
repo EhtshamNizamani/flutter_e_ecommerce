@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
   final int maxLine;
   final Color? fillColor;
   final Color? borderColor;
@@ -12,14 +11,18 @@ class CustomTextField extends StatelessWidget {
   final Function(dynamic)? validator;
   final int? maxLength;
   final Color? styleColor;
+  final Icon? prefixIcon;
   final bool isReadOnly;
   final String? suffixIcon;
+  final String? labelText;
+
   final TextEditingController controller;
 
   const CustomTextField(
       {super.key,
-      required this.hintText,
+      this.labelText,
       required this.controller,
+      this.prefixIcon,
       this.suffixIcon,
       this.keyboardType,
       this.validator,
@@ -64,12 +67,13 @@ class CustomTextField extends StatelessWidget {
                 ),
               )
             : null,
-        hintText: hintText,
-        hintStyle: theme.textTheme.titleMedium!.copyWith(
+        labelText: labelText,
+        labelStyle: theme.textTheme.titleMedium!.copyWith(
           fontSize: 13,
           fontWeight: FontWeight.w400,
           color: AppColors.grey,
         ),
+        prefixIcon: prefixIcon,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16.0,
           vertical: 12.0,

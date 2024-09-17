@@ -3,7 +3,7 @@ import 'package:flutter_e_commerce/common/custom_text.dart';
 import 'package:flutter_e_commerce/common/primary_button.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
 import 'package:flutter_e_commerce/util/responsive.dart';
-import 'package:flutter_e_commerce/widgets/custom_textfield.dart';
+import 'package:flutter_e_commerce/feature/shared_widget/custom_textfield.dart';
 
 class SubscribeWidget extends StatelessWidget {
   const SubscribeWidget({super.key});
@@ -52,7 +52,7 @@ class SubscribeWidget extends StatelessWidget {
                         child: CustomTextField(
                           borderColor: AppColors.primary,
                           fillColor: Colors.white,
-                          hintText: 'Email Address',
+                          labelText: 'Email Address',
                           controller: TextEditingController(),
                         ),
                       ),
@@ -78,7 +78,7 @@ class SubscribeWidget extends StatelessWidget {
                         child: CustomTextField(
                           borderColor: AppColors.primary,
                           fillColor: Colors.white,
-                          hintText: 'Email Address',
+                          labelText: 'Email Address',
                           controller: TextEditingController(),
                         ),
                       ),
