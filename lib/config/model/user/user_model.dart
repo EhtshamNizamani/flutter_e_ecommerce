@@ -4,10 +4,9 @@ class UserModel {
   final String email;
   final String role;
   final String createdAt;
-  final String updatedAt;
+  final String? updatedAt;
   final String accessToken;
   final String refreshToken;
-  final int version;
 
   UserModel({
     required this.id,
@@ -16,9 +15,8 @@ class UserModel {
     required this.role,
     required this.refreshToken,
     required this.accessToken,
+    this.updatedAt,
     required this.createdAt,
-    required this.updatedAt,
-    required this.version,
   });
 
   // Factory method to create a UserModel from JSON
@@ -31,8 +29,7 @@ class UserModel {
       accessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
       createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      version: json['__v'],
+      updatedAt: json['updatedAt'] ?? '',
     );
   }
 }

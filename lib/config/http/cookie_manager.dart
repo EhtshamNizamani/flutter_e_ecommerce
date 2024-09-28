@@ -6,7 +6,8 @@ class CookieManager {
     String cookie = '$key=$value; path=/';
 
     if (maxAgeDays != null) {
-      final DateTime expiryDate = DateTime.now().add(Duration(days: maxAgeDays));
+      final DateTime expiryDate =
+          DateTime.now().add(Duration(days: maxAgeDays));
       cookie += '; expires=${expiryDate.toUtc().toIso8601String()}';
     }
 
@@ -27,6 +28,7 @@ class CookieManager {
 
   /// Delete a cookie by setting its expiry date in the past
   static void deleteCookie(String key) {
-    html.document.cookie = '$key=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    html.document.cookie =
+        '$key=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
   }
 }

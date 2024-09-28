@@ -32,6 +32,11 @@ class AuthService {
       });
       await AuthService.checkCookies();
       final apiResponse = ApiResponse.fromJson(response);
+      await SharedPreferencesManager()
+          .saveAccessToken(apiResponse.data.accessToken);
+      await SharedPreferencesManager()
+          .saveRefreshToken(apiResponse.data.refreshToken);
+
       return apiResponse.data;
     } catch (e) {
       print('test$e');
@@ -39,48 +44,26 @@ class AuthService {
     }
   }
 
-  static Future<LoginResponse> loginUser(String email, String password) async {
-    const apiUrl = 'api/client/auth/login';
+  static Future<UserModel> loginUser(String email, String password) async {
+    const apiUrl = 'users/login';
     final Map<String, String> headers =
         await HttpServices.getHeadersWithoutToken();
     try {
-      final tempUrl = Global.apiUrl + apiUrl;
-      Uri uri = Uri.parse(tempUrl);
-      final response = await http.post(Uri.parse(uri.toString()),
-          headers: headers,
-          body: json.encode({
-            "email": email,
-            "password": password,
-          }));
+      apiUrl;
+      final response = await HttpServices()
+          .postReqWithoutInterceptor(apiUrl: apiUrl, headers: headers, body: {
+        "email": email,
+        "password": password,
+      });
+      print("response $response");
+      await AuthService.checkCookies();
+      final apiResponse = ApiResponse.fromJson(response);
+      await SharedPreferencesManager()
+          .saveAccessToken(apiResponse.data.accessToken);
+      await SharedPreferencesManager()
+          .saveRefreshToken(apiResponse.data.refreshToken);
 
-      final dynamic responseBody = json.decode(response.body);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        if (kDebugMode) {
-          print('success');
-        }
-        if (responseBody['success']) {
-          print("resospoee ${responseBody.toString()}");
-          final LoginResponse loginResponse =
-              LoginResponse.fromJson(json.decode(response.body));
-
-          return loginResponse;
-        } else {
-          CustomToast.showCustomToast(
-              message: responseBody['body']['message'],
-              webColor: AppColors.webRed,
-              backgroundColor: AppColors.red,
-              textColor: AppColors.white);
-          throw responseBody['body']['message'];
-        }
-      } else {
-        Map<String, dynamic> responseData = json.decode(response.body);
-        String errorMessage = responseData['message'];
-        throw errorMessage;
-      }
-    } on TimeoutException {
-      throw Exception('Slow  internet ');
-    } on SocketException {
-      throw Exception('No internet ');
+      return apiResponse.data;
     } catch (e) {
       print('test$e');
       rethrow;

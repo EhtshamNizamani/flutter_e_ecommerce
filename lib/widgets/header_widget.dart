@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/custom_text.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
-import 'package:flutter_e_commerce/config/rotues.dart';
+import 'package:flutter_e_commerce/config/routes.dart';
 import 'package:flutter_e_commerce/feature/home/controller/home_provider.dart';
 import 'package:flutter_e_commerce/util/responsive.dart';
 import 'package:flutter_svg/svg.dart';
@@ -186,7 +186,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 200),
                       ],
                     ),
                   ),

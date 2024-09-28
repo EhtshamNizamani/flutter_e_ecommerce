@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/primary_button.dart';
 import 'package:flutter_e_commerce/config/color/app_colors.dart';
-import 'package:flutter_e_commerce/config/rotues.dart';
+import 'package:flutter_e_commerce/config/routes.dart';
 import 'package:flutter_e_commerce/feature/auth/provider/auth_provider.dart';
 import 'package:flutter_e_commerce/feature/shared_widget/custom_password_textfield.dart';
+import 'package:flutter_e_commerce/feature/shared_widget/custom_tex.dart';
 import 'package:flutter_e_commerce/feature/shared_widget/custom_textfield.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<AuthProvider>().checkAuthStatus(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +60,10 @@ class RegistrationPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                fontSize: 36,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            const CustomTextWidget(
+                              text: 'Sign Up',
+                              fontSize: 36,
+                              fontWeight: FontWeight.w600,
                             ),
                             const SizedBox(height: 16),
                             CustomTextField(

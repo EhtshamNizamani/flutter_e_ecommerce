@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce/config/rotues.dart';
+import 'package:flutter_e_commerce/config/http/cookie_manager.dart';
+import 'package:flutter_e_commerce/config/routes.dart';
 import 'package:flutter_e_commerce/feature/auth/view/login_page.dart';
 import 'package:flutter_e_commerce/feature/auth/view/register_page.dart';
 import 'package:flutter_e_commerce/feature/home/view/home_screen.dart';
@@ -48,6 +51,26 @@ GoRouter gotRouter() {
         ],
       ),
     ],
+    // Redirect logic
+    redirect: (context, state) {
+      final String? isAuthenticated =
+          CookieManager.retrieveCookie('accessToken');
+      // Use state.location or state.uri.toString() instead of GoRouter.of(context)
+      final currentLocation = state.uri.toString();
+
+      // If authenticated and tries to access login or register, redirect to home
+      if (isAuthenticated != null &&
+          (currentLocation == '/login' || currentLocation == '/register')) {
+        return '/';
+      }
+
+      // If not authenticated and tries to access home, redirect to login
+      if (isAuthenticated == null && currentLocation == '/') {
+        return '/login';
+      }
+
+      return null; // No redirection
+    },
   );
 }
 
